@@ -19,15 +19,27 @@
         e.preventDefault();
         const vraag = document.getElementById("question").value;
 
-        // Verander hier de URL naar je localtunnel URL
-        const res = await fetch("https://old-walls-live.loca.lt/ask", {
+        // Vervang hier de URL naar je localtunnel URL of je server URL.
+        const res = await fetch("https://old-walls-live.loca.lt/ask", {  // Zorg ervoor dat je URL correct is
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ question: vraag })
         });
 
+        // Controleer of het verzoek succesvol was
+        if (!res.ok) {
+            document.getElementById("antwoord").textContent = "Er is een fout opgetreden bij het ophalen van het antwoord.";
+            return;
+        }
+
         const data = await res.json();
-        document.getElementById("antwoord").textContent = data.result || "Geen antwoord ontvangen.";
+
+        // Zorg ervoor dat je de juiste data ontvangt van je server
+        if (data && data.result) {
+            document.getElementById("antwoord").textContent = data.result;
+        } else {
+            document.getElementById("antwoord").textContent = "Geen antwoord ontvangen.";
+        }
     });
 </script>
 </body>
