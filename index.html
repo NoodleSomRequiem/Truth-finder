@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <title>Factchecker met AI</title>
+</head>
+<body>
+<h1>Stel je vraag aan de Factchecker AI</h1>
+<form id="factForm">
+    <input type="text" id="question" placeholder="Bijv: Is koffie ongezond?" required />
+    <button type="submit">Check</button>
+</form>
+
+<h2>Antwoord:</h2>
+<p id="antwoord">...</p>
+
+<script>
+    document.getElementById("factForm").addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const vraag = document.getElementById("question").value;
+
+        // Verander hier de URL naar je localtunnel URL
+        const res = await fetch("https://thick-signs-refuse.loca.lt/ask", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ question: vraag })
+        });
+
+        const data = await res.json();
+        document.getElementById("antwoord").textContent = data.result || "Geen antwoord ontvangen.";
+    });
+</script>
+</body>
+</html>
