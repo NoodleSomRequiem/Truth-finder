@@ -20,7 +20,7 @@
         const vraag = document.getElementById("question").value;
 
         // Verander hier de URL naar je localtunnel URL
-        const res = await fetch("https://old-walls-live.loca.lt", {
+        const res = await fetch("https://old-walls-live.loca.lt/ask", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ question: vraag })
