@@ -19,11 +19,11 @@
         e.preventDefault();
         const vraag = document.getElementById("question").value;
 
-        // Vervang hier de URL naar je localtunnel URL of je server URL.
-        const res = await fetch("https://spotty-olives-kick.loca.lt/ask", {  // Zorg ervoor dat je URL correct is
+        // Gebruik de nieuwe URL
+        const res = await fetch("https://fresh-brooms-live.loca.lt/ask", {  // Nieuwe URL voor de API
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({ question: vraag })
+            body: JSON.stringify({ question: vraag })  // Verstuur de vraag als JSON
         });
 
         // Controleer of het verzoek succesvol was
