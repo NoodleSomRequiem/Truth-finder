@@ -20,7 +20,7 @@
         const vraag = document.getElementById("question").value;
 
         // Verander hier de URL naar je localtunnel URL
-        const res = await fetch("https://thick-signs-refuse.loca.lt/ask", {
+        const res = await fetch("https://truthfinder-ai.loca.lt", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ question: vraag })
