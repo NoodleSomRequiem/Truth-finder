@@ -19,8 +19,8 @@
         e.preventDefault();
         const vraag = document.getElementById("question").value;
 
-        // Gebruik de nieuwe URL
-        const res = await fetch("https://clever-ends-tan.loca.lt/ask", {  // Nieuwe URL voor de API
+        // Gebruik de juiste URL voor je lokaal draaiende server
+        const res = await fetch("http://localhost:5000/ask", {  // Zorg ervoor dat de server op poort 5000 draait
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ question: vraag })  // Verstuur de vraag als JSON
@@ -35,8 +35,8 @@
         const data = await res.json();
 
         // Zorg ervoor dat je de juiste data ontvangt van je server
-        if (data && data.result) {
-            document.getElementById("antwoord").textContent = data.result;
+        if (data && data.answer) { // Let op dat we hier "answer" gebruiken, niet "result"
+            document.getElementById("antwoord").textContent = data.answer;
         } else {
             document.getElementById("antwoord").textContent = "Geen antwoord ontvangen.";
         }
